@@ -109,9 +109,7 @@
 							e.preventDefault();
 							return false;
 						} else {
-							
-							console.log('input keyup: '+solvedToggle);
-							
+														
 							puzInit.checkAnswer(e);
 
 						}
@@ -149,8 +147,6 @@
 					puzzEl.delegate('input', 'click', function(e) {
 						mode = "setting ui";
 						if (solvedToggle) solvedToggle = false;
-
-						console.log('input click: '+solvedToggle);
 					
 						nav.updateByEntry(e);
 						e.preventDefault();
@@ -212,7 +208,6 @@
 							$('#' + puzz.data[i].orientation).append('<li class="nonumber" tabindex="1" data-position="' + i + '">' + puzz.data[i].position + ". " + puzz.data[i].clue + '</li>'); 
 						else if(puzz.data[i].clue)
 							$('#' + puzz.data[i].orientation).append('<li style="margin-top: 6.4em;" class="nonumber" tabindex="1" data-position="' + i + '"><b>' + puzz.data[i].clue + '</b></li>'); 
-						console.log(puzz.data.length);
 					}				
 					
 					// Calculate rows/cols by finding max coords of each entry, then picking the highest
@@ -283,8 +278,6 @@
 								$(light).css( "border", "2px dotted black" );
 							}
 							else input = '<input class="crosswinput" maxlength="1" val="" type="text" tabindex="-1"/>';
-							//console.log((hasOffset ? x - positionOffset : x));
-							//console.log("Beseda:"+x+", crka "+letters[i]);
 							
 							if($(light).children().length === 0){
 								$(light)
@@ -298,7 +291,6 @@
 							else {
 								$(light)
 									.addClass('entry-' + (hasOffset ? x - positionOffset : x) + ' position-' + (x-1) );
-									console.log("is empty");
 								if (i == 0) {
 									//$(light).find("span").text($(light).find("span").text()+(', ' + puzz.data[x-1].position));
 								}
@@ -314,14 +306,7 @@
 									$(light).append($("<span>" + (j+1) + "</span>").attr('char-index',j));
 								}
 							}
-							
-						};
-						
-						
-						
-						//console.log(letters);
-						//console.log(entries);
-						
+						};		
 					};	
 					
 					// unused chars
@@ -359,8 +344,6 @@
 						.join('');
 					
 					
-					
-					//console.log(currVal + " " + valToCheck);
 					if(valToCheck === currVal){	
 						$('.active')
 							.addClass('done')
@@ -375,11 +358,6 @@
 					
 					if(e.keyCode != 8)
 						currOri === 'across' ? nav.nextPrevNav(e, 39) : nav.nextPrevNav(e, 40);
-					
-					//z++;
-					//console.log(z);
-					//console.log('checkAnswer() solvedToggle: '+solvedToggle);
-
 				}				
 
 
@@ -404,8 +382,6 @@
 					$('.current').removeClass('current');
 					
 					selector = '.position-' + activePosition + ' input:not([disabled])';
-					
-					//console.log('nextPrevNav activePosition & struck: '+ activePosition + ' '+struck);
 						
 					// move input focus/select to 'next' input
 					switch(struck) {
@@ -477,8 +453,6 @@
 					currOri = $('.clues-active').parent('ol').prop('id');
 										
 					activeClueIndex = $(clueLiEls).index(e.target);
-					//console.log('updateByNav() activeClueIndex: '+activeClueIndex);
-					
 				},
 			
 				// Sets activePosition var and adds active class to current entry
@@ -516,7 +490,6 @@
 						util.highlightClue();
 						
 						//$actives.eq(0).addClass('current');	
-						//console.log('nav.updateByEntry() reports activePosition as: '+activePosition);	
 				}
 				
 			}; // end nav object
@@ -586,10 +559,7 @@
 							}
 						} else {
 							activePosition = classes[0].split('-')[1];						
-						}
-						
-						console.log('getActivePositionFromClassGroup activePosition: '+activePosition);
-						
+						}		
 				},
 				
 				checkSolved: function(valToCheck) {
@@ -634,12 +604,10 @@
 							}
 						}
 					}
-					console.log(formattedKeys);
 					if(formattedKeys.join('') == puzz.answer.toLowerCase())
 						$("#msg").text("You won. Congratulations!");
 					
 					util.printKeys();
-					console.log(formattedKeys.join('')+"=="+puzz.answer.toLowerCase());
 				},
 				printKeys: function() {
 					if(	activePosition!=5)
